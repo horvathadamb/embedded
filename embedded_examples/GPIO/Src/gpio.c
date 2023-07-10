@@ -13,13 +13,9 @@
 #include "stm32f4xx_hal.h"
 #include "stdint.h"
 //*********************************************************
-// Defines
+// Local Defines
 //*********************************************************
-#define USER_GPIO_LED_PIN	GPIO_PIN_5
-#define USER_GPIO_LED_PORT	GPIOA
 
-#define USER_GPIO_TEST_PIN	GPIO_PIN_8
-#define USER_GPIO_TEST_PORT	GPIOC
 //*********************************************************
 // Type definitions
 //*********************************************************
@@ -37,7 +33,7 @@ void GPIO_LED_Init(void){
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	 HAL_GPIO_Init(USER_GPIO_LED_PORT, &GPIO_InitStruct);
+	HAL_GPIO_Init(USER_GPIO_LED_PORT, &GPIO_InitStruct);
 }
 
 void GPIO_TEST_PIN_Init(void){
@@ -49,7 +45,18 @@ void GPIO_TEST_PIN_Init(void){
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	 HAL_GPIO_Init(USER_GPIO_TEST_PORT, &GPIO_InitStruct);
+	HAL_GPIO_Init(USER_GPIO_TEST_PORT, &GPIO_InitStruct);
+}
+
+void GPIO_BUTTON_Init(void){
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+
+	GPIO_InitTypeDef GPIO_Initstruct = {0};
+
+	GPIO_Initstruct.Pin = USER_GPIO_BUTTON_PIN;
+	GPIO_Initstruct.Mode = GPIO_MODE_INPUT;
+	GPIO_Initstruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(USER_GPIO_BUTTON_PORT, &GPIO_Initstruct);
 }
 
 void GPIO_Toggle_LED(void){
