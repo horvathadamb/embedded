@@ -37,5 +37,6 @@ void GPIO_Toggle_LED(void);
 void GPIO_TEST_PIN_Init(void);
 void GPIO_Toggle_TEST_PIN(void);
 void GPIO_BUTTON_Init(void);
+void GPIO_Button_It_Init(void);
 //*********************************************************
 #endif /* EXAMPLES_GPIO_INC_GPIO_H_ */
